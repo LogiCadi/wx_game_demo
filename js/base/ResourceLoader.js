@@ -3,7 +3,9 @@ import {Resources} from "./Resources.js";
 
 export class ResourceLoader {
     constructor() {
+        // 加载资源
         this.map = new Map(Resources)
+        // value替换成image对象
         for (let [key, value] of this.map) {
             const image = new Image()
             image.src = value

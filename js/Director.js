@@ -14,5 +14,6 @@ export class Director {
 
     run(){
         this.dataStore.get('background').draw()
+        this.dataStore.get('land').draw()
     }
 }
