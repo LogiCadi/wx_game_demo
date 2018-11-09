@@ -1,4 +1,4 @@
-import {DataStore} from "./DataStore.js";
+import { DataStore } from "./DataStore.js";
 
 // 精灵的基类，负责初始化精灵加载的资源和大小以及位置
 export class Sprite {
@@ -27,7 +27,7 @@ export class Sprite {
     draw(img = this.img,
         srcX = this.srcX, srcY = this.srcY, srcW = this.srcW, srcH = this.srcH,
         x = this.x, y = this.y, width = this.width, height = this.height) {
-            
+
         this.ctx.drawImage(img, srcX, srcY, srcW, srcH, x, y, width, height)
     }
 
