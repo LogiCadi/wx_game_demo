@@ -1,4 +1,5 @@
 import { Sprite } from "../base/Sprite.js";
+import { Director } from "../Director.js";
 
 export class Land extends Sprite {
     constructor() {
@@ -6,14 +7,14 @@ export class Land extends Sprite {
         super(image,
             0, 0, image.width, image.height,
             0, window.innerHeight - image.height, image.width, image.height)
-        this.landX = 0
-        this.landSpeed = 2
     }
+
     draw() {
-        this.landX += this.landSpeed
-        super.draw(this.image,
-            0, 0, this.image.width, this.image.height,
-            -this.landX)
+        this.x -= Director.getInstance().speed
+        if (-this.x > (this.srcW - window.innerWidth)) {
+            this.x = 0
+        }
+        super.draw()
     }
 
 }
