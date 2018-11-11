@@ -1,4 +1,4 @@
-import { Pencil } from './Pencil.js';
+import {Pencil} from './Pencil.js';
 
 export class UpPencil extends Pencil {
     constructor(top) {
@@ -6,7 +6,7 @@ export class UpPencil extends Pencil {
         super(image, top);
     }
     draw() {
-        this.y = this.top - this.height
+        this.y = -(this.height - this.top)
         super.draw()
     }
 }
