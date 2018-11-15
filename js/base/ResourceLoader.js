@@ -1,7 +1,8 @@
 // canvas在图片资源加载完毕后进行渲染
-import {Resources} from "./Resources.js";
+// import {Resources} from "./Resources.js";
 
-export class ResourceLoader {
+ class ResourceLoader {
+// export class ResourceLoader {
     constructor() {
         // 加载资源
         this.map = new Map(Resources)

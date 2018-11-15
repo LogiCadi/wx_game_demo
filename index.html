@@ -18,13 +18,39 @@
             height: 100%;
             overflow: hidden;
         }
+        #game-canvas{
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     </style>
 </head>
 
 <body>
-    <canvas id="game-canvas" width="375" height="667"></canvas>
+    <canvas id="game-canvas" width="375" height="667">该浏览器不支持canvas</canvas>
 
-    <script src="./game.js" type="module"></script>
+
+    <script src="./js/base/Resources.js"></script>
+    <script src="./js/base/ResourceLoader.js"></script>
+    <script src="./js/base/DataStore.js"></script>
+    <script src="./js/base/Sprite.js"></script>
+
+    <script src="./js/runtime/BackGround.js"></script>
+    <script src="./js/runtime/Land.js"></script>
+    <script src="./js/runtime/Pencil.js"></script>
+    <script src="./js/runtime/UpPencil.js"></script>
+    <script src="./js/runtime/DownPencil.js"></script>
+
+    <script src="./js/player/StartButton.js"></script>
+    <script src="./js/player/Score.js"></script>
+    <script src="./js/player/Birds.js"></script>
+
+    <script src="./js/Director.js"></script>
+
+    <script src="./Main.js"></script>
+
+    <script src="./game.js"></script>
 </body>
 
 </html>

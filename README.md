@@ -1,5 +1,7 @@
 # FlappyBird
 
+> h5版FlappyBird
+
 ## 源码目录介绍
 
 ```text

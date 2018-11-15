@@ -1,17 +1,22 @@
-import {ResourceLoader} from "./js/base/ResourceLoader.js";
-import {Director} from "./js/Director.js";
-import {DataStore} from "./js/base/DataStore.js";
-import {BackGround} from "./js/runtime/BackGround.js";
-import {Land} from "./js/runtime/Land.js";
-import {Birds} from "./js/player/Birds.js";
+// import { ResourceLoader } from "./js/base/ResourceLoader.js";
+// import { Director } from "./js/Director.js";
+// import { DataStore } from "./js/base/DataStore.js";
+// import { BackGround } from "./js/runtime/BackGround.js";
+// import { Land } from "./js/runtime/Land.js";
+// import { Birds } from "./js/player/Birds.js";
+// import { StartButton } from "./js/player/StartButton.js";
+// import { Score } from "./js/player/Score.js";
 
 /**作为游戏开始的入口 */
-export class Main {
+ class Main {
+// export class Main {
     constructor() {
-        this.canvas = document.getElementById('game-canvas');
-        this.ctx = this.canvas.getContext('2d');
         this.dataStore = DataStore.getInstance();
         this.director = Director.getInstance()
+
+        this.dataStore.canvas = document.getElementById('game-canvas');
+        this.dataStore.ctx = this.dataStore.canvas.getContext('2d');
+
         const loader = ResourceLoader.create();
         // 图片加载完成
         loader.onLoaded(map => {
@@ -22,29 +27,14 @@ export class Main {
 
     /**资源第一次加载完成 */
     onFirstLoaded(map) {
-        this.dataStore.ctx = this.ctx;
         // 资源map
         this.dataStore.res = map;
         this.init();
     }
-
-    init() {
-        this.director.isGameOver = false
-
-        this.dataStore
-            .put('background', BackGround)
-            .put('land', Land)
-            .put('pencils', [])
-            .put('birds', Birds)
-        // 点击屏幕
-        this.tapEvent()
-        this.director.createPencil()
-
-        this.director.run();
-    }
-    /**点击屏幕 */
-    tapEvent() {
-        this.canvas.addEventListener('touchstart', e => {
+    /**绑定事件 */
+    registerEvent() {
+        /**点击屏幕 */
+        this.dataStore.canvas.addEventListener('touchstart', e => {
             e.preventDefault()
             if (this.director.isGameOver) {
                 // 游戏结束，点击重新开始
@@ -52,16 +42,27 @@ export class Main {
                 this.init()
             } else {
                 // 点击让小鸟飞起来
-                this.birdUp()
+                this.director.birdUp()
             }
         })
     }
-    /**小鸟上移 */
-    birdUp() {
-        const bird = this.dataStore.get('birds')
+    init() {
+        this.director.isGameOver = false
+        this.dataStore.score = 0
+        this.dataStore.gap = DataStore.getInstance().canvas.height / 3
+        
+        this.dataStore
+            .put('background', BackGround)
+            .put('land', Land)
+            .put('pencils', [])
+            .put('birds', Birds)
+            .put('startButton', StartButton)
+            .put('score', Score)
+        // 创建一组铅笔
+        this.director.createPencil()
+        // 绑定事件
+        this.registerEvent()
 
-        bird.downY = bird.y - window.innerHeight / 9
-        bird.isUp = true
-        bird.time = 0
+        this.director.run();
     }
 }

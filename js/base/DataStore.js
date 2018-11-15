@@ -1,5 +1,6 @@
 // 变量缓存器，方便我们在不同的类中访问和修改变量
-export class DataStore {
+ class DataStore {
+// export class DataStore {
     constructor() {
         this.map = new Map()
     }
